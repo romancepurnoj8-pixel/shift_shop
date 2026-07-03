@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Каталог — BinariLab</title>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="BinariLab">
+        <span class="logo-word">Binari<b>Lab</b></span>
+      </a>
+      <button class="nav-toggle" aria-label="Меню">&#9776;</button>
+      <nav class="main-nav" aria-label="Основна навігація">
+        <a href="catalog.html">Чоловікам</a>
+        <a href="catalog.html">Жінкам</a>
+        <a href="catalog.html">Аксесуари</a>
+        <a href="about.html">Про нас</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="vhod.html">Вхід</a>
+        <a href="register.html" class="btn btn-dark btn-sm">Реєстрація</a>
+        <span class="divider"></span>
+        <a href="cabinet.html" class="icon-btn" title="Кабінет" aria-label="Особистий кабінет">
+          <img src="img/icon-heart-outline.png" alt="">
+        </a>
+        <a href="cart.html" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
+          <img src="img/icon-cart.png" alt="">
+          <span class="cart-badge">4</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  
+    
+  
+
+  
+  <main class="wrap section">
+    <div class="section-head">
+      <h1 class="section-title">
+        Каталог
+      </h1>
+    </div>
+
+    <div class="catalog-layout">
+      <aside class="filters" aria-label="Фільтри">
+        <h3>Фільтри</h3>
+        <div class="filter-group">
+          <label><input type="checkbox"> Adidas</label>
+          <label><input type="checkbox"> Vans</label>
+          <label><input type="checkbox"> Crocs</label>
+          <label><input type="checkbox"> Jordan</label>
+        </div>
+        <div class="filter-group">
+          <label><input type="checkbox"> 38</label>
+          <label><input type="checkbox"> 39</label>
+          <label><input type="checkbox"> 40</label>
+          <label><input type="checkbox"> 41</label>
+          <label><input type="checkbox"> 42</label>
+        </div>
+        <div class="filter-group">
+          <label><input type="checkbox"> Чорний</label>
+          <label><input type="checkbox"> Білий</label>
+          <label><input type="checkbox"> Кольоровий</label>
+        </div>
+        <div class="filter-group">
+          <label for="price">Ціна, до</label>
+          <input type="range" id="price" min="1000" max="7000" value="7000">
+          <div class="range-value">до 7 000 грн</div>
+        </div>
+        <button class="btn btn-primary btn-block" type="button">Застосувати</button>
+      </aside>
+
+      <div>
+        <div class="toolbar">
+          <span class="result-count">9 товарів</span>
+          <form method="get">
+            
+            
+            <select name="sort" onchange="this.form.submit()" aria-label="Сортування">
+              <option value="rating" selected>За рейтингом</option>
+              <option value="price_asc" >Дешевше</option>
+              <option value="price_desc" >Дорожче</option>
+            </select>
+          </form>
+        </div>
+
+        
+        <div class="grid">
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-30%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-2.html">
+      <img src="img/product-vans.png" alt="Vans Old Skool Classic">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Унісекс · Кеди</span>
+    <a href="product-2.html"><h3 class="card-title">Vans Old Skool Classic</h3></a>
+    <div class="price-row">
+      <span class="price-now">2 090 грн</span>
+      <span class="price-old">2 990 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="2">
+      <input type="hidden" name="size" value="38">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-20%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-9.html">
+      <img src="img/product-sneaker-2.png" alt="Adidas LA Trainer OG &#34;Rose&#34;">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Жінки · Кросівки</span>
+    <a href="product-9.html"><h3 class="card-title">Adidas LA Trainer OG &#34;Rose&#34;</h3></a>
+    <div class="price-row">
+      <span class="price-now">5 090 грн</span>
+      <span class="price-old">6 350 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="9">
+      <input type="hidden" name="size" value="37">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-30%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-1.html">
+      <img src="img/product-sneaker-2.png" alt="Adidas LA Trainer OG &#34;Off White&#34;">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Чоловіки · Кросівки</span>
+    <a href="product-1.html"><h3 class="card-title">Adidas LA Trainer OG &#34;Off White&#34;</h3></a>
+    <div class="price-row">
+      <span class="price-now">4 445 грн</span>
+      <span class="price-old">6 350 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="1">
+      <input type="hidden" name="size" value="40">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-25%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-4.html">
+      <img src="img/product-sneaker-1.png" alt="Jordan Retro 3610 «Neutral»">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Чоловіки · Кросівки</span>
+    <a href="product-4.html"><h3 class="card-title">Jordan Retro 3610 «Neutral»</h3></a>
+    <div class="price-row">
+      <span class="price-now">3 890 грн</span>
+      <span class="price-old">5 200 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="4">
+      <input type="hidden" name="size" value="41">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-20%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-3.html">
+      <img src="img/product-sneaker-3.png" alt="Crocs Spongebob Squarepants Clog">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Жінки · Крокси</span>
+    <a href="product-3.html"><h3 class="card-title">Crocs Spongebob Squarepants Clog</h3></a>
+    <div class="price-row">
+      <span class="price-now">3 192 грн</span>
+      <span class="price-old">3 990 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="3">
+      <input type="hidden" name="size" value="36">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-19%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-8.html">
+      <img src="img/product-sneaker-1.png" alt="Jordan Retro 3610 «Sail»">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Чоловіки · Кросівки</span>
+    <a href="product-8.html"><h3 class="card-title">Jordan Retro 3610 «Sail»</h3></a>
+    <div class="price-row">
+      <span class="price-now">4 190 грн</span>
+      <span class="price-old">5 200 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="8">
+      <input type="hidden" name="size" value="42">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-20%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-5.html">
+      <img src="img/product-sneaker-2.png" alt="Adidas LA Trainer OG &#34;Core Black&#34;">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Чоловіки · Кросівки</span>
+    <a href="product-5.html"><h3 class="card-title">Adidas LA Trainer OG &#34;Core Black&#34;</h3></a>
+    <div class="price-row">
+      <span class="price-now">4 990 грн</span>
+      <span class="price-old">6 350 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="5">
+      <input type="hidden" name="size" value="40">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-20%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-6.html">
+      <img src="img/product-vans.png" alt="Vans Old Skool Pastel">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Жінки · Кеди</span>
+    <a href="product-6.html"><h3 class="card-title">Vans Old Skool Pastel</h3></a>
+    <div class="price-row">
+      <span class="price-now">2 390 грн</span>
+      <span class="price-old">2 990 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="6">
+      <input type="hidden" name="size" value="36">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+          <article class="card">
+  <div class="card-media">
+    <span class="badge">-23%</span>
+    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="img/icon-heart-outline.png" alt=""></button>
+    <a href="product-7.html">
+      <img src="img/product-sneaker-3.png" alt="Crocs Classic Clog Tie-Dye">
+    </a>
+  </div>
+  <div class="card-body">
+    <span class="card-cat">Унісекс · Крокси</span>
+    <a href="product-7.html"><h3 class="card-title">Crocs Classic Clog Tie-Dye</h3></a>
+    <div class="price-row">
+      <span class="price-now">2 690 грн</span>
+      <span class="price-old">3 490 грн</span>
+    </div>
+    <form data-disabled-action="/cart/add" method="post" class="card-cta">
+      <input type="hidden" name="product_id" value="7">
+      <input type="hidden" name="size" value="37">
+      <input type="hidden" name="next" value="/catalog">
+      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
+    </form>
+  </div>
+</article>
+          
+        </div>
+        
+      </div>
+    </div>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="bin-rule" aria-hidden="true">
+        <span>01001010</span><span>BINARILAB</span><span>01101100</span><span>KYIV.UA</span><span>01110011</span><span>SNEAKER LAB</span><span>00110110</span>
+      </div>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><img src="img/logo.png" alt="BinariLab"></a>
+          <p>Магазин кросівок та стріт-аксесуарів. Оригінальні пари, чесні ціни, доставка по всій Україні.</p>
+          <div class="social-row">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="TikTok">TT</a>
+            <a href="#" aria-label="YouTube">YT</a>
+            <a href="#" aria-label="Telegram">TG</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Каталог</h4>
+          <a href="catalog.html">Чоловікам</a>
+          <a href="catalog.html">Жінкам</a>
+          <a href="catalog.html">Аксесуари</a>
+          <a href="catalog.html">Розпродаж</a>
+        </div>
+        <div class="footer-col">
+          <h4>Компанія</h4>
+          <a href="about.html">Про нас</a>
+          <a href="cabinet.html">Особистий кабінет</a>
+          <a href="cart.html">Кошик</a>
+          <a href="admin-dashboard.html">Адмін-панель</a>
+        </div>
+        <div class="footer-col">
+          <h4>Клієнтам</h4>
+          <a href="vhod.html">Вхід</a>
+          <a href="register.html">Реєстрація</a>
+          <a href="#">Доставка й оплата</a>
+          <a href="#">Повернення</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 BinariLab. Усі права захищені.</span>
+        <span>Київ · пн-нд 10:00-20:00 · +38 (099) 000-00-00</span>
+      </div>
+    </div>
+  </footer>
+<script src="js/site.js"></script>
+
+</body>
+</html>

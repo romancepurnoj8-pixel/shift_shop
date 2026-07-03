@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Товари — BinariLab</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="img/logo.png" alt="BinariLab">
+        <span class="logo-word">Binari<b>Lab</b></span>
+      </div>
+      <p class="admin-tag">Адмін-панель</p>
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html" class="">Дашборд</a>
+        <a href="admin-products.html" class="active">Товари</a>
+        <a href="admin-orders.html" class="">Замовлення</a>
+      </nav>
+      <div class="admin-back">
+        <a href="index.html">&larr; Повернутися на сайт</a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      
+        
+      
+      
+  <div class="admin-topbar">
+    <div>
+      <h1>Товари</h1>
+      <p>9 товарів у каталозі</p>
+    </div>
+    <a href="admin-product-new.html" class="btn btn-primary btn-sm">+ Додати товар</a>
+  </div>
+
+  <form class="admin-search" method="get">
+    <input type="text" name="q" value="" placeholder="Пошук за назвою або брендом...">
+    <button type="button" class="btn btn-dark btn-sm">Знайти</button>
+  </form>
+
+  <div class="admin-panel">
+    <table class="admin-table">
+      <thead>
+        <tr><th></th><th>Товар</th><th>Категорія</th><th>Ціна</th><th>Знижка</th><th>Рейтинг</th><th></th></tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td><img src="img/product-sneaker-2.png" alt=""></td>
+          <td><div class="prod-name">Adidas LA Trainer OG &#34;Off White&#34;</div><div class="prod-sku">ADI-LAT-OW-01</div></td>
+          <td>Чоловіки · Кросівки</td>
+          <td>4 445 грн</td>
+          <td>-30%</td>
+          <td>&#9733; 4.8</td>
+          <td style="white-space:nowrap">
+            <a href="product-1.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/1/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Adidas LA Trainer OG &#34;Off White&#34;»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><img src="img/product-vans.png" alt=""></td>
+          <td><div class="prod-name">Vans Old Skool Classic</div><div class="prod-sku">VAN-OSK-BF-02</div></td>
+          <td>Унісекс · Кеди</td>
+          <td>2 090 грн</td>
+          <td>-30%</td>
+          <td>&#9733; 4.9</td>
+          <td style="white-space:nowrap">
+            <a href="product-2.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/2/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Vans Old Skool Classic»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><img src="img/product-sneaker-3.png" alt=""></td>
+          <td><div class="prod-name">Crocs Spongebob Squarepants Clog</div><div class="prod-sku">CRC-SBS-YL-03</div></td>
+          <td>Жінки · Крокси</td>
+          <td>3 192 грн</td>
+          <td>-20%</td>
+          <td>&#9733; 4.6</td>
+          <td style="white-space:nowrap">
+            <a href="product-3.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/3/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Crocs Spongebob Squarepants Clog»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><img src="img/product-sneaker-1.png" alt=""></td>
+          <td><div class="prod-name">Jordan Retro 3610 «Neutral»</div><div class="prod-sku">JOR-3610-NT-04</div></td>
+          <td>Чоловіки · Кросівки</td>
+          <td>3 890 грн</td>
+          <td>-25%</td>
+          <td>&#9733; 4.7</td>
+          <td style="white-space:nowrap">
+            <a href="product-4.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/4/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Jordan Retro 3610 «Neutral»»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><img src="img/product-sneaker-2.png" alt=""></td>
+          <td><div class="prod-name">Adidas LA Trainer OG &#34;Core Black&#34;</div><div class="prod-sku">ADI-LAT-BK-05</div></td>
+          <td>Чоловіки · Кросівки</td>
+          <td>4 990 грн</td>
+          <td>-20%</td>
+          <td>&#9733; 4.5</td>
+          <td style="white-space:nowrap">
+            <a href="product-5.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/5/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Adidas LA Trainer OG &#34;Core Black&#34;»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><img src="img/product-vans.png" alt=""></td>
+          <td><div class="prod-name">Vans Old Skool Pastel</div><div class="prod-sku">VAN-OSK-PS-06</div></td>
+          <td>Жінки · Кеди</td>
+          <td>2 390 грн</td>
+          <td>-20%</td>
+          <td>&#9733; 4.4</td>
+          <td style="white-space:nowrap">
+            <a href="product-6.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/6/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Vans Old Skool Pastel»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><img src="img/product-sneaker-3.png" alt=""></td>
+          <td><div class="prod-name">Crocs Classic Clog Tie-Dye</div><div class="prod-sku">CRC-CLC-TD-07</div></td>
+          <td>Унісекс · Крокси</td>
+          <td>2 690 грн</td>
+          <td>-23%</td>
+          <td>&#9733; 4.3</td>
+          <td style="white-space:nowrap">
+            <a href="product-7.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/7/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Crocs Classic Clog Tie-Dye»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><img src="img/product-sneaker-1.png" alt=""></td>
+          <td><div class="prod-name">Jordan Retro 3610 «Sail»</div><div class="prod-sku">JOR-3610-SL-08</div></td>
+          <td>Чоловіки · Кросівки</td>
+          <td>4 190 грн</td>
+          <td>-19%</td>
+          <td>&#9733; 4.6</td>
+          <td style="white-space:nowrap">
+            <a href="product-8.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/8/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Jordan Retro 3610 «Sail»»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+        <tr>
+          <td><img src="img/product-sneaker-2.png" alt=""></td>
+          <td><div class="prod-name">Adidas LA Trainer OG &#34;Rose&#34;</div><div class="prod-sku">ADI-LAT-RS-09</div></td>
+          <td>Жінки · Кросівки</td>
+          <td>5 090 грн</td>
+          <td>-20%</td>
+          <td>&#9733; 4.9</td>
+          <td style="white-space:nowrap">
+            <a href="product-9.html" class="icon-action" target="_blank">Переглянути</a>
+            <form data-disabled-action="/admin/products/9/delete" method="post" style="display:inline" onsubmit="return confirm('Видалити «Adidas LA Trainer OG &#34;Rose&#34;»?');">
+              <button type="button" class="icon-action danger">Видалити</button>
+            </form>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Оформлення замовлення — BinariLab</title>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="BinariLab">
+        <span class="logo-word">Binari<b>Lab</b></span>
+      </a>
+      <button class="nav-toggle" aria-label="Меню">&#9776;</button>
+      <nav class="main-nav" aria-label="Основна навігація">
+        <a href="catalog.html">Чоловікам</a>
+        <a href="catalog.html">Жінкам</a>
+        <a href="catalog.html">Аксесуари</a>
+        <a href="about.html">Про нас</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="vhod.html">Вхід</a>
+        <a href="register.html" class="btn btn-dark btn-sm">Реєстрація</a>
+        <span class="divider"></span>
+        <a href="cabinet.html" class="icon-btn" title="Кабінет" aria-label="Особистий кабінет">
+          <img src="img/icon-heart-outline.png" alt="">
+        </a>
+        <a href="cart.html" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
+          <img src="img/icon-cart.png" alt="">
+          <span class="cart-badge">4</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  
+    
+  
+
+  
+  <main class="wrap section">
+    <div class="section-head">
+      <h1 class="section-title">Оформлення замовлення</h1>
+    </div>
+
+    <form method="post" class="checkout-layout">
+      <div>
+        <div class="checkout-form">
+          <h3>Контактні дані</h3>
+          <div class="field-row">
+            <div class="field ">
+              <label for="name">Ім'я та прізвище</label>
+              <input type="text" id="name" name="name" value="" placeholder="Олена Коваль">
+              
+            </div>
+            <div class="field ">
+              <label for="phone">Телефон</label>
+              <input type="tel" id="phone" name="phone" value="" placeholder="+38 (099) 000-00-00">
+              
+            </div>
+          </div>
+          <div class="field ">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="" placeholder="you@example.com">
+            
+          </div>
+        </div>
+
+        <div class="checkout-form">
+          <h3>Доставка</h3>
+          <div class="field-row">
+            <div class="field ">
+              <label for="city">Місто</label>
+              <input type="text" id="city" name="city" value="" placeholder="Київ">
+              
+            </div>
+            <div class="field ">
+              <label for="address">Адреса / відділення</label>
+              <input type="text" id="address" name="address" value="" placeholder="вул. Хрещатик, 22">
+              
+            </div>
+          </div>
+
+          <fieldset>
+            <label class="radio-card">
+              <input type="radio" name="delivery" value="Нова пошта, у відділення" checked>
+              <span><strong>Нова пошта — у відділення</strong><span class="hint">1-2 дні · 90 грн</span></span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="delivery" value="Нова пошта, кур'єром">
+              <span><strong>Нова пошта — кур'єром</strong><span class="hint">1-2 дні · 150 грн</span></span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="delivery" value="Самовивіз з магазину">
+              <span><strong>Самовивіз</strong><span class="hint">вул. Січових Стрільців, 10, Київ · безкоштовно</span></span>
+            </label>
+          </fieldset>
+        </div>
+
+        <div class="checkout-form">
+          <h3>Оплата</h3>
+          <fieldset>
+            <label class="radio-card">
+              <input type="radio" name="payment" value="Оплата карткою онлайн" checked>
+              <span><strong>Карткою онлайн</strong><span class="hint">Visa / Mastercard</span></span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="payment" value="Оплата при отриманні">
+              <span><strong>При отриманні</strong><span class="hint">готівкою або карткою кур'єру</span></span>
+            </label>
+          </fieldset>
+          <div class="field">
+            <label for="comment">Коментар до замовлення (необов'язково)</label>
+            <input type="text" id="comment" name="comment" value="" placeholder="Наприклад: передзвонити перед доставкою">
+          </div>
+        </div>
+      </div>
+
+      <aside class="checkout-summary">
+        <h3>Ваше замовлення</h3>
+        
+        <div class="mini-line">
+          <img src="img/product-sneaker-2.png" alt="">
+          <div>
+            <div class="name">Adidas LA Trainer OG &#34;Off White&#34;</div>
+            <div class="meta">Розмір 41 · 1 шт.</div>
+          </div>
+          <div style="font-family:var(--font-data);font-weight:700">4 445 грн</div>
+        </div>
+        
+        <div class="mini-line">
+          <img src="img/product-vans.png" alt="">
+          <div>
+            <div class="name">Vans Old Skool Classic</div>
+            <div class="meta">Розмір 42 · 1 шт.</div>
+          </div>
+          <div style="font-family:var(--font-data);font-weight:700">2 090 грн</div>
+        </div>
+        
+        <div class="mini-line">
+          <img src="img/product-sneaker-3.png" alt="">
+          <div>
+            <div class="name">Crocs Spongebob Squarepants Clog</div>
+            <div class="meta">Розмір 39 · 2 шт.</div>
+          </div>
+          <div style="font-family:var(--font-data);font-weight:700">6 384 грн</div>
+        </div>
+        
+        <div class="summary-row" style="margin-top:14px"><span>Товари</span><span>12 919 грн</span></div>
+        <div class="summary-row"><span>Доставка</span><span>150 грн</span></div>
+        <div class="summary-row total"><span>До сплати</span><span>13 069 грн</span></div>
+        <button type="button" class="btn btn-primary btn-block" style="margin-top:16px">Підтвердити замовлення</button>
+        <a href="cart.html" class="section-link" style="display:block;text-align:center;margin-top:16px">&larr; Повернутися в кошик</a>
+      </aside>
+    </form>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="bin-rule" aria-hidden="true">
+        <span>01001010</span><span>BINARILAB</span><span>01101100</span><span>KYIV.UA</span><span>01110011</span><span>SNEAKER LAB</span><span>00110110</span>
+      </div>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><img src="img/logo.png" alt="BinariLab"></a>
+          <p>Магазин кросівок та стріт-аксесуарів. Оригінальні пари, чесні ціни, доставка по всій Україні.</p>
+          <div class="social-row">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="TikTok">TT</a>
+            <a href="#" aria-label="YouTube">YT</a>
+            <a href="#" aria-label="Telegram">TG</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Каталог</h4>
+          <a href="catalog.html">Чоловікам</a>
+          <a href="catalog.html">Жінкам</a>
+          <a href="catalog.html">Аксесуари</a>
+          <a href="catalog.html">Розпродаж</a>
+        </div>
+        <div class="footer-col">
+          <h4>Компанія</h4>
+          <a href="about.html">Про нас</a>
+          <a href="cabinet.html">Особистий кабінет</a>
+          <a href="cart.html">Кошик</a>
+          <a href="admin-dashboard.html">Адмін-панель</a>
+        </div>
+        <div class="footer-col">
+          <h4>Клієнтам</h4>
+          <a href="vhod.html">Вхід</a>
+          <a href="register.html">Реєстрація</a>
+          <a href="#">Доставка й оплата</a>
+          <a href="#">Повернення</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 BinariLab. Усі права захищені.</span>
+        <span>Київ · пн-нд 10:00-20:00 · +38 (099) 000-00-00</span>
+      </div>
+    </div>
+  </footer>
+<script src="js/site.js"></script>
+
+</body>
+</html>

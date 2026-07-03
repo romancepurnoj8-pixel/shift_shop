@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Кошик — BinariLab</title>
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="index.html" class="logo">
+        <img src="img/logo.png" alt="BinariLab">
+        <span class="logo-word">Binari<b>Lab</b></span>
+      </a>
+      <button class="nav-toggle" aria-label="Меню">&#9776;</button>
+      <nav class="main-nav" aria-label="Основна навігація">
+        <a href="catalog.html">Чоловікам</a>
+        <a href="catalog.html">Жінкам</a>
+        <a href="catalog.html">Аксесуари</a>
+        <a href="about.html">Про нас</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="vhod.html">Вхід</a>
+        <a href="register.html" class="btn btn-dark btn-sm">Реєстрація</a>
+        <span class="divider"></span>
+        <a href="cabinet.html" class="icon-btn" title="Кабінет" aria-label="Особистий кабінет">
+          <img src="img/icon-heart-outline.png" alt="">
+        </a>
+        <a href="cart.html" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
+          <img src="img/icon-cart.png" alt="">
+          <span class="cart-badge">4</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  
+    
+  
+
+  
+  <main class="wrap section">
+    <div class="section-head">
+      <h1 class="section-title">Кошик</h1>
+      <span class="result-count">3 товари</span>
+    </div>
+
+    
+    <div class="cart-layout">
+      <div>
+        
+        <div class="cart-item">
+          <img src="img/product-sneaker-2.png" alt="Adidas LA Trainer OG &#34;Off White&#34;">
+          <div class="cart-item-info">
+            <h3>Adidas LA Trainer OG &#34;Off White&#34;</h3>
+            <div class="cart-meta"><span>Розмір 41</span><span>В наявності</span></div>
+            <form data-disabled-action="/cart/update" method="post" style="display:inline-block">
+              <input type="hidden" name="key" value="1-41">
+              <div class="qty-control" aria-label="Кількість">
+                <button type="button" name="qty" value="0" aria-label="Зменшити">&minus;</button>
+                <span>1</span>
+                <button type="button" name="qty" value="2" aria-label="Збільшити">&plus;</button>
+              </div>
+            </form>
+            <form data-disabled-action="/cart/remove" method="post" style="display:inline-block">
+              <input type="hidden" name="key" value="1-41">
+              <button type="button" class="remove-link" style="border:none;background:none;padding:0">Видалити</button>
+            </form>
+          </div>
+          <div class="cart-item-price">
+            <span class="price-now">4 445 грн</span>
+          </div>
+        </div>
+        
+        <div class="cart-item">
+          <img src="img/product-vans.png" alt="Vans Old Skool Classic">
+          <div class="cart-item-info">
+            <h3>Vans Old Skool Classic</h3>
+            <div class="cart-meta"><span>Розмір 42</span><span>В наявності</span></div>
+            <form data-disabled-action="/cart/update" method="post" style="display:inline-block">
+              <input type="hidden" name="key" value="2-42">
+              <div class="qty-control" aria-label="Кількість">
+                <button type="button" name="qty" value="0" aria-label="Зменшити">&minus;</button>
+                <span>1</span>
+                <button type="button" name="qty" value="2" aria-label="Збільшити">&plus;</button>
+              </div>
+            </form>
+            <form data-disabled-action="/cart/remove" method="post" style="display:inline-block">
+              <input type="hidden" name="key" value="2-42">
+              <button type="button" class="remove-link" style="border:none;background:none;padding:0">Видалити</button>
+            </form>
+          </div>
+          <div class="cart-item-price">
+            <span class="price-now">2 090 грн</span>
+          </div>
+        </div>
+        
+        <div class="cart-item">
+          <img src="img/product-sneaker-3.png" alt="Crocs Spongebob Squarepants Clog">
+          <div class="cart-item-info">
+            <h3>Crocs Spongebob Squarepants Clog</h3>
+            <div class="cart-meta"><span>Розмір 39</span><span>В наявності</span></div>
+            <form data-disabled-action="/cart/update" method="post" style="display:inline-block">
+              <input type="hidden" name="key" value="3-39">
+              <div class="qty-control" aria-label="Кількість">
+                <button type="button" name="qty" value="1" aria-label="Зменшити">&minus;</button>
+                <span>2</span>
+                <button type="button" name="qty" value="3" aria-label="Збільшити">&plus;</button>
+              </div>
+            </form>
+            <form data-disabled-action="/cart/remove" method="post" style="display:inline-block">
+              <input type="hidden" name="key" value="3-39">
+              <button type="button" class="remove-link" style="border:none;background:none;padding:0">Видалити</button>
+            </form>
+          </div>
+          <div class="cart-item-price">
+            <span class="price-now">6 384 грн</span>
+          </div>
+        </div>
+        
+      </div>
+
+      <aside class="summary">
+        <h3>Разом</h3>
+        <div class="summary-row"><span>Товари (3)</span><span>12 919 грн</span></div>
+        <div class="summary-row"><span>Доставка</span><span>150 грн</span></div>
+        <div class="promo-field">
+          <input type="text" placeholder="Промокод">
+          <button class="btn btn-ghost btn-sm" type="button">OK</button>
+        </div>
+        <div class="summary-row total"><span>До сплати</span><span>13 069 грн</span></div>
+        <a href="checkout.html" class="btn btn-primary btn-block" style="margin-top:16px">Оформити замовлення</a>
+        <a href="catalog.html" class="section-link" style="display:block;text-align:center;margin-top:16px">&larr; Продовжити покупки</a>
+      </aside>
+    </div>
+    
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="bin-rule" aria-hidden="true">
+        <span>01001010</span><span>BINARILAB</span><span>01101100</span><span>KYIV.UA</span><span>01110011</span><span>SNEAKER LAB</span><span>00110110</span>
+      </div>
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo"><img src="img/logo.png" alt="BinariLab"></a>
+          <p>Магазин кросівок та стріт-аксесуарів. Оригінальні пари, чесні ціни, доставка по всій Україні.</p>
+          <div class="social-row">
+            <a href="#" aria-label="Instagram">IG</a>
+            <a href="#" aria-label="TikTok">TT</a>
+            <a href="#" aria-label="YouTube">YT</a>
+            <a href="#" aria-label="Telegram">TG</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Каталог</h4>
+          <a href="catalog.html">Чоловікам</a>
+          <a href="catalog.html">Жінкам</a>
+          <a href="catalog.html">Аксесуари</a>
+          <a href="catalog.html">Розпродаж</a>
+        </div>
+        <div class="footer-col">
+          <h4>Компанія</h4>
+          <a href="about.html">Про нас</a>
+          <a href="cabinet.html">Особистий кабінет</a>
+          <a href="cart.html">Кошик</a>
+          <a href="admin-dashboard.html">Адмін-панель</a>
+        </div>
+        <div class="footer-col">
+          <h4>Клієнтам</h4>
+          <a href="vhod.html">Вхід</a>
+          <a href="register.html">Реєстрація</a>
+          <a href="#">Доставка й оплата</a>
+          <a href="#">Повернення</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 BinariLab. Усі права захищені.</span>
+        <span>Київ · пн-нд 10:00-20:00 · +38 (099) 000-00-00</span>
+      </div>
+    </div>
+  </footer>
+<script src="js/site.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Замовлення №1004 — BinariLab</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">
+        <img src="img/logo.png" alt="BinariLab">
+        <span class="logo-word">Binari<b>Lab</b></span>
+      </div>
+      <p class="admin-tag">Адмін-панель</p>
+      <nav class="admin-nav">
+        <a href="admin-dashboard.html" class="">Дашборд</a>
+        <a href="admin-products.html" class="">Товари</a>
+        <a href="admin-orders.html" class="active">Замовлення</a>
+      </nav>
+      <div class="admin-back">
+        <a href="index.html">&larr; Повернутися на сайт</a>
+      </div>
+    </aside>
+
+    <main class="admin-main">
+      
+        
+      
+      
+  <div class="admin-topbar">
+    <div>
+      <h1>Замовлення №1004</h1>
+      <p>Створено 03.07.2026 о 08:37</p>
+    </div>
+    <span class="pill pill-processing">Обробляється</span>
+  </div>
+
+  <div class="admin-form-grid" style="align-items:start">
+    <div class="admin-panel">
+      <h2>Товари в замовленні</h2>
+      <table class="admin-table">
+        <thead><tr><th></th><th>Товар</th><th>Розмір</th><th>К-ть</th><th>Сума</th></tr></thead>
+        <tbody>
+          
+          
+          
+          <tr>
+            <td><img src="img/product-sneaker-2.png" alt=""></td>
+            <td class="prod-name">Adidas LA Trainer OG &#34;Off White&#34;</td>
+            <td>41</td>
+            <td>1</td>
+            <td>4 445 грн</td>
+          </tr>
+          
+          
+          
+          
+          <tr>
+            <td><img src="img/product-vans.png" alt=""></td>
+            <td class="prod-name">Vans Old Skool Classic</td>
+            <td>42</td>
+            <td>1</td>
+            <td>2 090 грн</td>
+          </tr>
+          
+          
+          
+          
+          <tr>
+            <td><img src="img/product-sneaker-3.png" alt=""></td>
+            <td class="prod-name">Crocs Spongebob Squarepants Clog</td>
+            <td>39</td>
+            <td>2</td>
+            <td>6 384 грн</td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+      <div style="text-align:right;margin-top:14px;font-family:var(--font-data);font-weight:700;font-size:18px">
+        Разом: 12 919 грн
+      </div>
+    </div>
+
+    <div>
+      <div class="admin-panel">
+        <h2>Клієнт</h2>
+        <p style="margin:0 0 8px"><strong>Олена Коваль</strong></p>
+        <p style="margin:0 0 8px;color:var(--muted)">+38 (099) 123-45-67</p>
+        <p style="margin:0 0 8px;color:var(--muted)">olena.koval@example.com</p>
+        <p style="margin:0 0 8px;color:var(--muted)">Київ, вул. Хрещатик, 22, кв. 5</p>
+        <p style="margin:0;color:var(--muted)">Нова пошта, у відділення · Оплата карткою онлайн</p>
+        
+      </div>
+
+      <div class="admin-panel">
+        <h2>Статус замовлення</h2>
+        <form method="post" data-disabled-action="/admin/orders/1004/status">
+          <div class="field">
+            <select name="status">
+              
+              <option value="processing" selected>Обробляється</option>
+              
+              <option value="shipped" >У дорозі</option>
+              
+              <option value="delivered" >Доставлено</option>
+              
+              <option value="cancelled" >Скасовано</option>
+              
+            </select>
+          </div>
+          <button type="button" class="btn btn-dark btn-block">Оновити статус</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+    </main>
+  </div>
+</body>
+</html>
