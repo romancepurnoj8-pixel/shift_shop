@@ -4,32 +4,32 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Оформлення замовлення — BinariLab</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 <body>
   <header class="site-header">
     <div class="wrap">
-      <a href="index.html" class="logo">
-        <img src="img/logo.png" alt="BinariLab">
+      <a href="{{ url_for('index') }}" class="logo">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab">
         <span class="logo-word">Binari<b>Lab</b></span>
       </a>
       <button class="nav-toggle" aria-label="Меню">&#9776;</button>
       <nav class="main-nav" aria-label="Основна навігація">
-        <a href="catalog.html">Чоловікам</a>
-        <a href="catalog.html">Жінкам</a>
-        <a href="catalog.html">Аксесуари</a>
-        <a href="about.html">Про нас</a>
+        <a href="{{ url_for('catalog') }}">Чоловікам</a>
+        <a href="{{ url_for('catalog') }}">Жінкам</a>
+        <a href="{{ url_for('catalog') }}">Аксесуари</a>
+        <a href="{{ url_for('about') }}">Про нас</a>
       </nav>
       <div class="nav-actions">
-        <a href="vhod.html">Вхід</a>
-        <a href="register.html" class="btn btn-dark btn-sm">Реєстрація</a>
+        <a href="{{ url_for('login') }}">Вхід</a>
+        <a href="{{ url_for('register') }}" class="btn btn-dark btn-sm">Реєстрація</a>
         <span class="divider"></span>
-        <a href="cabinet.html" class="icon-btn" title="Кабінет" aria-label="Особистий кабінет">
-          <img src="img/icon-heart-outline.png" alt="">
+        <a href="{{ url_for('cabinet') }}" class="icon-btn" title="Кабінет" aria-label="Особистий кабінет">
+          <img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt="">
         </a>
-        <a href="cart.html" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
-          <img src="img/icon-cart.png" alt="">
+        <a href="{{ url_for('cart') }}" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
+          <img src="{{ url_for('static', filename='img/icon-cart.png') }}" alt="">
           <span class="cart-badge">4</span>
         </a>
       </div>
@@ -123,7 +123,7 @@
         <h3>Ваше замовлення</h3>
         
         <div class="mini-line">
-          <img src="img/product-sneaker-2.png" alt="">
+          <img src="{{ url_for('static', filename='img/product-sneaker-2.png') }}" alt="">
           <div>
             <div class="name">Adidas LA Trainer OG &#34;Off White&#34;</div>
             <div class="meta">Розмір 41 · 1 шт.</div>
@@ -132,7 +132,7 @@
         </div>
         
         <div class="mini-line">
-          <img src="img/product-vans.png" alt="">
+          <img src="{{ url_for('static', filename='img/product-vans.png') }}" alt="">
           <div>
             <div class="name">Vans Old Skool Classic</div>
             <div class="meta">Розмір 42 · 1 шт.</div>
@@ -141,7 +141,7 @@
         </div>
         
         <div class="mini-line">
-          <img src="img/product-sneaker-3.png" alt="">
+          <img src="{{ url_for('static', filename='img/product-sneaker-3.png') }}" alt="">
           <div>
             <div class="name">Crocs Spongebob Squarepants Clog</div>
             <div class="meta">Розмір 39 · 2 шт.</div>
@@ -153,7 +153,7 @@
         <div class="summary-row"><span>Доставка</span><span>150 грн</span></div>
         <div class="summary-row total"><span>До сплати</span><span>13 069 грн</span></div>
         <button type="button" class="btn btn-primary btn-block" style="margin-top:16px">Підтвердити замовлення</button>
-        <a href="cart.html" class="section-link" style="display:block;text-align:center;margin-top:16px">&larr; Повернутися в кошик</a>
+        <a href="{{ url_for('cart') }}" class="section-link" style="display:block;text-align:center;margin-top:16px">&larr; Повернутися в кошик</a>
       </aside>
     </form>
   </main>
@@ -166,7 +166,7 @@
       </div>
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="index.html" class="logo"><img src="img/logo.png" alt="BinariLab"></a>
+          <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab"></a>
           <p>Магазин кросівок та стріт-аксесуарів. Оригінальні пари, чесні ціни, доставка по всій Україні.</p>
           <div class="social-row">
             <a href="#" aria-label="Instagram">IG</a>
@@ -177,22 +177,22 @@
         </div>
         <div class="footer-col">
           <h4>Каталог</h4>
-          <a href="catalog.html">Чоловікам</a>
-          <a href="catalog.html">Жінкам</a>
-          <a href="catalog.html">Аксесуари</a>
-          <a href="catalog.html">Розпродаж</a>
+          <a href="{{ url_for('catalog') }}">Чоловікам</a>
+          <a href="{{ url_for('catalog') }}">Жінкам</a>
+          <a href="{{ url_for('catalog') }}">Аксесуари</a>
+          <a href="{{ url_for('catalog') }}">Розпродаж</a>
         </div>
         <div class="footer-col">
           <h4>Компанія</h4>
-          <a href="about.html">Про нас</a>
-          <a href="cabinet.html">Особистий кабінет</a>
-          <a href="cart.html">Кошик</a>
-          <a href="admin-dashboard.html">Адмін-панель</a>
+          <a href="{{ url_for('about') }}">Про нас</a>
+          <a href="{{ url_for('cabinet') }}">Особистий кабінет</a>
+          <a href="{{ url_for('cart') }}">Кошик</a>
+          <a href="{{ url_for('admin_dashboard') }}">Адмін-панель</a>
         </div>
         <div class="footer-col">
           <h4>Клієнтам</h4>
-          <a href="vhod.html">Вхід</a>
-          <a href="register.html">Реєстрація</a>
+          <a href="{{ url_for('login') }}">Вхід</a>
+          <a href="{{ url_for('register') }}">Реєстрація</a>
           <a href="#">Доставка й оплата</a>
           <a href="#">Повернення</a>
         </div>
@@ -203,7 +203,7 @@
       </div>
     </div>
   </footer>
-<script src="js/site.js"></script>
+<script src="{{ url_for('static', filename='js/site.js') }}"></script>
 
 </body>
 </html>

@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Новий товар — BinariLab</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="admin-body">
   <div class="admin-shell">
     <aside class="admin-sidebar">
       <div class="admin-brand">
-        <img src="img/logo.png" alt="BinariLab">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab">
         <span class="logo-word">Binari<b>Lab</b></span>
       </div>
       <p class="admin-tag">Адмін-панель</p>
       <nav class="admin-nav">
-        <a href="admin-dashboard.html" class="">Дашборд</a>
-        <a href="admin-products.html" class="active">Товари</a>
-        <a href="admin-orders.html" class="">Замовлення</a>
+        <a href="{{ url_for('admin_dashboard') }}" class="">Дашборд</a>
+        <a href="{{ url_for('admin_products') }}" class="active">Товари</a>
+        <a href="{{ url_for('admin_orders') }}" class="">Замовлення</a>
       </nav>
       <div class="admin-back">
-        <a href="index.html">&larr; Повернутися на сайт</a>
+        <a href="{{ url_for('index') }}">&larr; Повернутися на сайт</a>
       </div>
     </aside>
 
@@ -80,7 +80,7 @@
       <input type="text" id="description" name="description" placeholder="Короткий опис товару">
     </div>
     <button type="button" class="btn btn-primary">Зберегти товар</button>
-    <a href="admin-products.html" class="btn btn-ghost">Скасувати</a>
+    <a href="{{ url_for('admin_products') }}" class="btn btn-ghost">Скасувати</a>
   </form>
 
     </main>

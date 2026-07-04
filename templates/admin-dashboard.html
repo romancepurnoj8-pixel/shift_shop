@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Дашборд — BinariLab</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="admin-body">
   <div class="admin-shell">
     <aside class="admin-sidebar">
       <div class="admin-brand">
-        <img src="img/logo.png" alt="BinariLab">
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab">
         <span class="logo-word">Binari<b>Lab</b></span>
       </div>
       <p class="admin-tag">Адмін-панель</p>
       <nav class="admin-nav">
-        <a href="admin-dashboard.html" class="active">Дашборд</a>
-        <a href="admin-products.html" class="">Товари</a>
-        <a href="admin-orders.html" class="">Замовлення</a>
+        <a href="{{ url_for('admin_dashboard') }}" class="active">Дашборд</a>
+        <a href="{{ url_for('admin_products') }}" class="">Товари</a>
+        <a href="{{ url_for('admin_orders') }}" class="">Замовлення</a>
       </nav>
       <div class="admin-back">
-        <a href="index.html">&larr; Повернутися на сайт</a>
+        <a href="{{ url_for('index') }}">&larr; Повернутися на сайт</a>
       </div>
     </aside>
 
@@ -73,7 +73,7 @@
           <td>03.07.2026 08:37</td>
           <td>12 919 грн</td>
           <td><span class="pill pill-processing">Обробляється</span></td>
-          <td><a href="admin-order-1004.html" class="icon-action">Деталі</a></td>
+          <td><a href="{{ url_for('admin_order_detail', order_id=1004) }}" class="icon-action">Деталі</a></td>
         </tr>
         
         <tr>
@@ -82,7 +82,7 @@
           <td>29.06.2026 08:37</td>
           <td>6 535 грн</td>
           <td><span class="pill pill-delivered">Доставлено</span></td>
-          <td><a href="admin-order-1001.html" class="icon-action">Деталі</a></td>
+          <td><a href="{{ url_for('admin_order_detail', order_id=1001) }}" class="icon-action">Деталі</a></td>
         </tr>
         
         <tr>
@@ -91,7 +91,7 @@
           <td>02.07.2026 08:37</td>
           <td>3 890 грн</td>
           <td><span class="pill pill-shipped">У дорозі</span></td>
-          <td><a href="admin-order-1002.html" class="icon-action">Деталі</a></td>
+          <td><a href="{{ url_for('admin_order_detail', order_id=1002) }}" class="icon-action">Деталі</a></td>
         </tr>
         
         <tr>
@@ -100,7 +100,7 @@
           <td>03.07.2026 02:37</td>
           <td>9 074 грн</td>
           <td><span class="pill pill-processing">Обробляється</span></td>
-          <td><a href="admin-order-1003.html" class="icon-action">Деталі</a></td>
+          <td><a href="{{ url_for('admin_order_detail', order_id=1003) }}" class="icon-action">Деталі</a></td>
         </tr>
         
       </tbody>
@@ -116,7 +116,7 @@
       <tbody>
         
         <tr>
-          <td><img src="img/product-vans.png" alt=""></td>
+          <td><img src="{{ url_for('static', filename='img/product-vans.png') }}" alt=""></td>
           <td><div class="prod-name">Vans Old Skool Classic</div><div class="prod-sku">VAN-OSK-BF-02</div></td>
           <td>Vans</td>
           <td>2 090 грн</td>
@@ -124,7 +124,7 @@
         </tr>
         
         <tr>
-          <td><img src="img/product-sneaker-2.png" alt=""></td>
+          <td><img src="{{ url_for('static', filename='img/product-sneaker-2.png') }}" alt=""></td>
           <td><div class="prod-name">Adidas LA Trainer OG &#34;Rose&#34;</div><div class="prod-sku">ADI-LAT-RS-09</div></td>
           <td>Adidas</td>
           <td>5 090 грн</td>
@@ -132,7 +132,7 @@
         </tr>
         
         <tr>
-          <td><img src="img/product-sneaker-2.png" alt=""></td>
+          <td><img src="{{ url_for('static', filename='img/product-sneaker-2.png') }}" alt=""></td>
           <td><div class="prod-name">Adidas LA Trainer OG &#34;Off White&#34;</div><div class="prod-sku">ADI-LAT-OW-01</div></td>
           <td>Adidas</td>
           <td>4 445 грн</td>
@@ -140,7 +140,7 @@
         </tr>
         
         <tr>
-          <td><img src="img/product-sneaker-1.png" alt=""></td>
+          <td><img src="{{ url_for('static', filename='img/product-sneaker-1.png') }}" alt=""></td>
           <td><div class="prod-name">Jordan Retro 3610 «Neutral»</div><div class="prod-sku">JOR-3610-NT-04</div></td>
           <td>Jordan</td>
           <td>3 890 грн</td>
@@ -148,7 +148,7 @@
         </tr>
         
         <tr>
-          <td><img src="img/product-sneaker-3.png" alt=""></td>
+          <td><img src="{{ url_for('static', filename='img/product-sneaker-3.png') }}" alt=""></td>
           <td><div class="prod-name">Crocs Spongebob Squarepants Clog</div><div class="prod-sku">CRC-SBS-YL-03</div></td>
           <td>Crocs</td>
           <td>3 192 грн</td>
