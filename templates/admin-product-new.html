@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Новий товар — BinariLab</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Новий товар — BinariLab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body class="admin-body">
   <div class="admin-shell">
+    
     <aside class="admin-sidebar">
       <div class="admin-brand">
         <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab">
@@ -26,62 +27,85 @@
 
     <main class="admin-main">
       
-        
-      
-      
-  <div class="admin-topbar">
-    <div>
-      <h1>Новий товар</h1>
-      <p>Додайте позицію в каталог BinariLab</p>
-    </div>
-  </div>
+      <div class="admin-topbar">
+        <div>
+          <h1>Новий товар</h1>
+          <p>Додайте позицію в каталог BinariLab</p>
+        </div>
+      </div>
 
-  <form method="post" class="admin-panel">
-    <div class="admin-form-grid">
-      <div class="field">
-        <label for="name">Назва товару</label>
-        <input type="text" id="name" name="name" required placeholder='Adidas LA Trainer OG "Sand"'>
-      </div>
-      <div class="field">
-        <label for="brand">Бренд</label>
-        <input type="text" id="brand" name="brand" required placeholder="Adidas">
-      </div>
-      <div class="field">
-        <label for="category">Категорія</label>
-        <select id="category" name="category">
-          <option value="men">Чоловіки</option>
-          <option value="women">Жінки</option>
-          <option value="unisex">Унісекс</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="category_label">Підпис категорії</label>
-        <input type="text" id="category_label" name="category_label" placeholder="Чоловіки · Кросівки">
-      </div>
-      <div class="field">
-        <label for="price">Ціна, грн</label>
-        <input type="number" id="price" name="price" required min="0" placeholder="4990">
-      </div>
-      <div class="field">
-        <label for="old_price">Стара ціна, грн</label>
-        <input type="number" id="old_price" name="old_price" min="0" placeholder="6350">
-      </div>
-      <div class="field">
-        <label for="sizes">Розміри (через кому)</label>
-        <input type="text" id="sizes" name="sizes" placeholder="39, 40, 41, 42">
-      </div>
-      <div class="field">
-        <label for="color">Колір</label>
-        <input type="text" id="color" name="color" placeholder="Пісочний">
-      </div>
-    </div>
-    <div class="field">
-      <label for="description">Опис</label>
-      <input type="text" id="description" name="description" placeholder="Короткий опис товару">
-    </div>
-    <button type="button" class="btn btn-primary">Зберегти товар</button>
-    <a href="{{ url_for('admin_products') }}" class="btn btn-ghost">Скасувати</a>
-  </form>
+      <form method="post" enctype="multipart/form-data" class="admin-panel">
+        <div class="admin-form-grid">
+          
+          <div class="field">
+            <label for="name">Назва товару <span style="color: #e63946;">*</span></label>
+            <input type="text" id="name" name="name" required placeholder='Adidas LA Trainer OG "Sand"'>
+          </div>
+          
+          <div class="field">
+            <label for="brand">Бренд <span style="color: #e63946;">*</span></label>
+            <input type="text" id="brand" name="brand" required placeholder="Adidas">
+          </div>
+          
+          <div class="field">
+            <label for="category">Категорія</label>
+            <select id="category" name="category">
+              <option value="men">Чоловіки</option>
+              <option value="women">Жінки</option>
+              <option value="unisex">Унісекс</option>
+            </select>
+          </div>
+          
+          <div class="field">
+            <label for="category_label">Підпис категорії</label>
+            <input type="text" id="category_label" name="category_label" placeholder="Чоловіки · Кросівки">
+          </div>
+          
+          <div class="field">
+            <label for="price">Ціна, грн <span style="color: #e63946;">*</span></label>
+            <input type="number" id="price" name="price" required min="0" placeholder="4990">
+          </div>
+          
+          <div class="field">
+            <label for="old_price">Стара ціна, грн</label>
+            <input type="number" id="old_price" name="old_price" min="0" placeholder="6350">
+          </div>
+          
+          <div class="field">
+            <label for="sizes">Розміри</label>
+            <input type="text" id="sizes" name="sizes" placeholder="39, 40, 41, 42">
+            <small style="color: #6c757d; display: block; margin-top: 4px;">Вказуйте через кому з пробілом</small>
+          </div>
+          
+          <div class="field">
+            <label for="color">Колір</label>
+            <input type="text" id="color" name="color" placeholder="Пісочний">
+          </div>
+
+          <div class="field">
+            <label for="sort_order">Порядок сортування</label>
+            <input type="number" id="sort_order" name="sort_order" min="0" step="1" value="0" placeholder="0">
+            <small style="color: #6c757d; display: block; margin-top: 4px;">Менше число — вище в каталозі. За замовчуванням 0.</small>
+          </div>
+
+          <div class="field">
+            <label for="image">Зображення товару</label>
+            <input type="file" id="image" name="image" accept="image/*">
+          </div>
+          
+        </div>
+        
+        <div class="field" style="margin-top: 20px;">
+          <label for="description">Опис</label>
+          <textarea id="description" name="description" rows="5" placeholder="Короткий опис товару, його особливості та характеристики..." style="width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #ccc; resize: vertical; box-sizing: border-box; font-family: inherit;"></textarea>
+        </div>
+        
+        <div class="form-actions" style="margin-top: 24px; display: flex; gap: 12px; align-items: center;">
+          <button type="submit" class="btn btn-primary">Зберегти товар</button>
+          <a href="{{ url_for('admin_products') }}" class="btn btn-ghost">Скасувати</a>
+        </div>
+        
+      </form>
 
     </main>
   </div>
