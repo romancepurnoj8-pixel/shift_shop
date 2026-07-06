@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Каталог — BinariLab</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Каталог — BinariLab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
   <header class="site-header">
     <div class="wrap">
       <a href="{{ url_for('index') }}" class="logo">
@@ -36,16 +36,9 @@
     </div>
   </header>
 
-  
-    
-  
-
-  
   <main class="wrap section">
     <div class="section-head">
-      <h1 class="section-title">
-        Каталог
-      </h1>
+      <h1 class="section-title">Каталог</h1>
     </div>
 
     <div class="catalog-layout">
@@ -79,243 +72,51 @@
 
       <div>
         <div class="toolbar">
-          <span class="result-count">9 товарів</span>
+          <span class="result-count">{{ products|length }} товарів</span>
           <form method="get">
-            
-            
             <select name="sort" onchange="this.form.submit()" aria-label="Сортування">
               <option value="rating" selected>За рейтингом</option>
-              <option value="price_asc" >Дешевше</option>
-              <option value="price_desc" >Дорожче</option>
+              <option value="price_asc">Дешевше</option>
+              <option value="price_desc">Дорожче</option>
             </select>
           </form>
         </div>
 
-        
         <div class="grid">
-          
+          {% for product in products %}
           <article class="card">
-  <div class="card-media">
-    <span class="badge">-30%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=2) }}">
-      <img src="{{ url_for('static', filename='img/product-vans.png') }}" alt="Vans Old Skool Classic">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Унісекс · Кеди</span>
-    <a href="{{ url_for('product', product_id=2) }}"><h3 class="card-title">Vans Old Skool Classic</h3></a>
-    <div class="price-row">
-      <span class="price-now">2 090 грн</span>
-      <span class="price-old">2 990 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="2">
-      <input type="hidden" name="size" value="38">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
-          <article class="card">
-  <div class="card-media">
-    <span class="badge">-20%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=9) }}">
-      <img src="{{ url_for('static', filename='img/product-sneaker-2.png') }}" alt="Adidas LA Trainer OG &#34;Rose&#34;">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Жінки · Кросівки</span>
-    <a href="{{ url_for('product', product_id=9) }}"><h3 class="card-title">Adidas LA Trainer OG &#34;Rose&#34;</h3></a>
-    <div class="price-row">
-      <span class="price-now">5 090 грн</span>
-      <span class="price-old">6 350 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="9">
-      <input type="hidden" name="size" value="37">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
-          <article class="card">
-  <div class="card-media">
-    <span class="badge">-30%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=1) }}">
-      <img src="{{ url_for('static', filename='img/product-sneaker-2.png') }}" alt="Adidas LA Trainer OG &#34;Off White&#34;">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Чоловіки · Кросівки</span>
-    <a href="{{ url_for('product', product_id=1) }}"><h3 class="card-title">Adidas LA Trainer OG &#34;Off White&#34;</h3></a>
-    <div class="price-row">
-      <span class="price-now">4 445 грн</span>
-      <span class="price-old">6 350 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="1">
-      <input type="hidden" name="size" value="40">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
-          <article class="card">
-  <div class="card-media">
-    <span class="badge">-25%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=4) }}">
-      <img src="{{ url_for('static', filename='img/product-sneaker-1.png') }}" alt="Jordan Retro 3610 «Neutral»">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Чоловіки · Кросівки</span>
-    <a href="{{ url_for('product', product_id=4) }}"><h3 class="card-title">Jordan Retro 3610 «Neutral»</h3></a>
-    <div class="price-row">
-      <span class="price-now">3 890 грн</span>
-      <span class="price-old">5 200 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="4">
-      <input type="hidden" name="size" value="41">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
-          <article class="card">
-  <div class="card-media">
-    <span class="badge">-20%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=3) }}">
-      <img src="{{ url_for('static', filename='img/product-sneaker-3.png') }}" alt="Crocs Spongebob Squarepants Clog">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Жінки · Крокси</span>
-    <a href="{{ url_for('product', product_id=3) }}"><h3 class="card-title">Crocs Spongebob Squarepants Clog</h3></a>
-    <div class="price-row">
-      <span class="price-now">3 192 грн</span>
-      <span class="price-old">3 990 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="3">
-      <input type="hidden" name="size" value="36">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
-          <article class="card">
-  <div class="card-media">
-    <span class="badge">-19%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=8) }}">
-      <img src="{{ url_for('static', filename='img/product-sneaker-1.png') }}" alt="Jordan Retro 3610 «Sail»">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Чоловіки · Кросівки</span>
-    <a href="{{ url_for('product', product_id=8) }}"><h3 class="card-title">Jordan Retro 3610 «Sail»</h3></a>
-    <div class="price-row">
-      <span class="price-now">4 190 грн</span>
-      <span class="price-old">5 200 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="8">
-      <input type="hidden" name="size" value="42">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
-          <article class="card">
-  <div class="card-media">
-    <span class="badge">-20%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=5) }}">
-      <img src="{{ url_for('static', filename='img/product-sneaker-2.png') }}" alt="Adidas LA Trainer OG &#34;Core Black&#34;">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Чоловіки · Кросівки</span>
-    <a href="{{ url_for('product', product_id=5) }}"><h3 class="card-title">Adidas LA Trainer OG &#34;Core Black&#34;</h3></a>
-    <div class="price-row">
-      <span class="price-now">4 990 грн</span>
-      <span class="price-old">6 350 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="5">
-      <input type="hidden" name="size" value="40">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
-          <article class="card">
-  <div class="card-media">
-    <span class="badge">-20%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=6) }}">
-      <img src="{{ url_for('static', filename='img/product-vans.png') }}" alt="Vans Old Skool Pastel">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Жінки · Кеди</span>
-    <a href="{{ url_for('product', product_id=6) }}"><h3 class="card-title">Vans Old Skool Pastel</h3></a>
-    <div class="price-row">
-      <span class="price-now">2 390 грн</span>
-      <span class="price-old">2 990 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="6">
-      <input type="hidden" name="size" value="36">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
-          <article class="card">
-  <div class="card-media">
-    <span class="badge">-23%</span>
-    <button type="button" class="card-fav" aria-label="Додати в обране"><img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt=""></button>
-    <a href="{{ url_for('product', product_id=7) }}">
-      <img src="{{ url_for('static', filename='img/product-sneaker-3.png') }}" alt="Crocs Classic Clog Tie-Dye">
-    </a>
-  </div>
-  <div class="card-body">
-    <span class="card-cat">Унісекс · Крокси</span>
-    <a href="{{ url_for('product', product_id=7) }}"><h3 class="card-title">Crocs Classic Clog Tie-Dye</h3></a>
-    <div class="price-row">
-      <span class="price-now">2 690 грн</span>
-      <span class="price-old">3 490 грн</span>
-    </div>
-    <form data-disabled-action="/cart/add" method="post" class="card-cta">
-      <input type="hidden" name="product_id" value="7">
-      <input type="hidden" name="size" value="37">
-      <input type="hidden" name="next" value="/catalog">
-      <button type="button" class="btn btn-ghost btn-sm btn-block">У кошик</button>
-    </form>
-  </div>
-</article>
-          
+            <div class="card-media">
+              {% if product.old_price %}
+                {% set discount=((product.old_price-product.price)/product.old_price*100)|round|int %}
+                <span class="badge">-{{ discount }}%</span>
+              {% endif %}
+              <a href="{{ url_for('product', product_id=product.id) }}">
+                <img src="{{ url_for('static', filename='img/' + product.image) }}">
+              </a>
+            </div>
+
+            <div class="card-body">
+              <span class="card-cat">{{ product.category_label }}</span>
+              <h3 class="card-title">{{ product.brand }} {{ product.name }}</h3>
+              <div class="price-row">
+                <span class="price-now">{{ product.price }} грн</span>
+                {% if product.old_price %}
+                  <span class="price-old">{{ product.old_price }} грн</span>
+                {% endif %}
+              </div>
+
+              <form action="{{ url_for('add_to_cart') }}" method="post">
+                <input type="hidden" name="product_id" value="{{ product.id }}">
+                <button class="btn btn-ghost btn-sm btn-block">У кошик</button>
+              </form>
+            </div>
+          </article>
+          {% endfor %}
         </div>
-        
+
       </div>
     </div>
   </main>
-
 
   <footer class="site-footer">
     <div class="wrap">
@@ -361,7 +162,7 @@
       </div>
     </div>
   </footer>
-<script src="{{ url_for('static', filename='js/site.js') }}"></script>
 
+  <script src="{{ url_for('static', filename='js/site.js') }}"></script>
 </body>
-</html>
+</html>ы

@@ -59,9 +59,35 @@ def index():
 
 
 @app.route("/catalog")
-def catalog():
-    category = request.args.get("category", "all")
-    return render_template("catalog.html", category=category)
+@app.route("/catalog/<category>")
+def catalog(category=None):
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    if category:
+        cursor.execute("""
+            SELECT *
+            FROM products
+            WHERE category=?
+            ORDER BY sort_order ASC, id DESC
+        """, (category,))
+    else:
+        cursor.execute("""
+            SELECT *
+            FROM products
+            ORDER BY sort_order ASC, id DESC
+        """)
+
+    products = cursor.fetchall()
+
+    conn.close()
+
+    return render_template(
+        "catalog.html",
+        products=products,
+        category=category
+    )
 
 
 @app.route("/about")
