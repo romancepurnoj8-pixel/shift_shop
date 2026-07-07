@@ -33,6 +33,20 @@ def init_db():
     conn.close()
 
 
+def init_Users():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            pass TEXT
+        )
+    """)
+    conn.commit()
+    conn.close()
+
+
 init_db()  # вызывается один раз при старте приложения
 
 
@@ -97,7 +111,26 @@ def about():
 
 @app.route("/product/<int:product_id>")
 def product(product_id):
-    return render_template("product-1.html", product_id=product_id)
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+
+    cursor.execute(
+        "SELECT * FROM products WHERE id=?",
+        (product_id,)
+
+    )
+    product = cursor.fetchone()
+    conn.close()
+
+
+    if product is None:
+        return "Товар не найден", 404
+    else:
+        sizes_string = product['sizes']  
+        sizes_list = sizes_string.split(',')
+        sizes_tuple = tuple(sizes_list)
+        return render_template("product.html", product=product, sizes_tuple=sizes_tuple)
 
 
 # ---------- Авторизація / кабінет ----------
@@ -105,8 +138,15 @@ def product(product_id):
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        return redirect(url_for("cabinet"))
-    return render_template("vhod.html")
+        init_Users()
+        name = request.form["lname"]
+        lname = request.form["lname"]
+        email = request.form["reg-email"]
+        emailT = request.form["reg-password2"]
+
+        if email != emailT:
+            c = "Пароли не совпадают"
+    return render_template("vhod.html", c=c)
 
 
 @app.route("/register", methods=["GET", "POST"])
