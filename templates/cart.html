@@ -8,34 +8,54 @@
 
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <a href="{{ url_for('index') }}" class="logo">
-        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab">
-        <span class="logo-word">Binari<b>Lab</b></span>
-      </a>
-      <button class="nav-toggle" aria-label="Меню">&#9776;</button>
-      <nav class="main-nav" aria-label="Основна навігація">
-        <a href="{{ url_for('catalog') }}">Чоловікам</a>
-        <a href="{{ url_for('catalog') }}">Жінкам</a>
-        <a href="{{ url_for('catalog') }}">Аксесуари</a>
-        <a href="{{ url_for('about') }}">Про нас</a>
-      </nav>
-      <div class="nav-actions">
+<header class="site-header">
+  <div class="wrap">
+    
+    <a href="{{ url_for('index') }}" class="logo">
+      <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab">
+      <span class="logo-word">Binari<b>Lab</b></span>
+    </a>
+    
+    <button class="nav-toggle" aria-label="Меню">&#9776;</button>
+    
+    <nav class="main-nav" aria-label="Основна навігація">
+      <a href="{{ url_for('catalog') }}">Чоловікам</a>
+      <a href="{{ url_for('catalog') }}">Жінкам</a>
+      <a href="{{ url_for('catalog') }}">Аксесуари</a>
+      <a href="{{ url_for('about') }}">Про нас</a>
+    </nav>
+    
+    <div class="nav-actions">
+      
+      {# Проверяем: если пользователь вошел (имя есть в сессии) #}
+      {% if session.get('username') %}
+        
+        <a href="{{ url_for('cabinet') }}" class="btn btn-primary btn-sm" title="Особистий кабінет">
+          ЛК: {{ session['username'] }}
+        </a>
+        
+        <a href="{{ url_for('logout') }}" style="margin-left: 10px; color: var(--muted); font-size: 14px;">Вихід</a>
+
+      {# Если пользователя в сессии нет (гость) #}
+      {% else %}
+        
         <a href="{{ url_for('login') }}">Вхід</a>
         <a href="{{ url_for('register') }}" class="btn btn-dark btn-sm">Реєстрація</a>
-        <span class="divider"></span>
-        <a href="{{ url_for('cabinet') }}" class="icon-btn" title="Кабінет" aria-label="Особистий кабінет">
-          <img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt="">
-        </a>
-        <a href="{{ url_for('cart') }}" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
-          <img src="{{ url_for('static', filename='img/icon-cart.png') }}" alt="">
-          <span class="cart-badge">4</span>
-        </a>
-      </div>
-    </div>
-  </header>
+        
+      {% endif %}
 
+      <span class="divider"></span>
+      
+      <a href="{{ url_for('cabinet') }}" class="icon-btn" title="Кабінет" aria-label="Особистий кабінет">
+        <img src="{{ url_for('static', filename='img/icon-heart-outline.png') }}" alt="">
+      </a>
+      
+      <a href="{{ url_for('cart') }}" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
+        <img src="{{ url_for('static', filename='img/icon-cart.png') }}" alt="">
+        <span class="cart-badge">4</span>
+      </a>
+      
+    </div> </div> </header>
   
     
   

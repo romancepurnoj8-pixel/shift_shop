@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Особистий кабінет — BinariLab</title>
+<title>Вхід — BinariLab</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
@@ -62,88 +62,56 @@
   
 
   
-  <main class="wrap section">
-    <div class="section-head">
-      <h1 class="section-title">Особистий кабінет</h1>
-    </div>
+<main class="auth-section">
+    <div class="auth-card">
+        <h1>Вхід</h1>
+        <p class="auth-sub">
+            Раді бачити знову. Увійдіть, щоб продовжити покупки.
+        </p>
 
-    <div class="cabinet-layout">
-      <aside class="cab-profile">
-        <div class="cab-avatar">ОК</div>
-        <h2>Олена Коваль</h2>
-        <p>olena.koval@example.com</p>
-        <nav class="cab-menu" aria-label="Меню кабінету">
-          <a href="#" class="active">Мої замовлення</a>
-          <a href="#">Особисті дані</a>
-          <a href="#">Обране</a>
-          <a href="#">Адреси доставки</a>
-          <a href="{{ url_for('login') }}">Вийти</a>
-        </nav>
-      </aside>
+        <form method="post" action="{{ url_for('login') }}">
 
-      <div>
-        <div class="cab-panel">
-          <h3>Останні замовлення</h3>
-          
-          <div class="order-row">
-            <img src="{{ url_for('static', filename='img/product-vans.png') }}" alt="">
-            <div>
-              <strong>Замовлення №1004</strong><br>
-              <span style="color:var(--muted);font-size:13px">від 03.07.2026</span>
-            </div>
-            <span style="font-family:var(--font-data);font-weight:700">3 товар(и)</span>
-            <span class="status-pill pending">
-              Обробляється
-            </span>
-          </div>
-          
-          <div class="order-row">
-            <img src="{{ url_for('static', filename='img/product-vans.png') }}" alt="">
-            <div>
-              <strong>Замовлення №1001</strong><br>
-              <span style="color:var(--muted);font-size:13px">від 29.06.2026</span>
-            </div>
-            <span style="font-family:var(--font-data);font-weight:700">2 товар(и)</span>
-            <span class="status-pill ">
-              Доставлено
-            </span>
-          </div>
-          
-          <div class="order-row">
-            <img src="{{ url_for('static', filename='img/product-vans.png') }}" alt="">
-            <div>
-              <strong>Замовлення №1002</strong><br>
-              <span style="color:var(--muted);font-size:13px">від 02.07.2026</span>
-            </div>
-            <span style="font-family:var(--font-data);font-weight:700">1 товар(и)</span>
-            <span class="status-pill pending">
-              У дорозі
-            </span>
-          </div>
-          
-        </div>
-
-        <div class="cab-panel">
-          <h3>Особисті дані</h3>
-          <div class="field-row">
             <div class="field">
-              <label for="c-fname">Ім'я</label>
-              <input type="text" id="c-fname" value="Олена">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required>
             </div>
+
             <div class="field">
-              <label for="c-lname">Прізвище</label>
-              <input type="text" id="c-lname" value="Коваль">
+                <label for="password">Пароль</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="••••••••"
+                    required>
             </div>
-          </div>
-          <div class="field">
-            <label for="c-phone">Телефон</label>
-            <input type="tel" id="c-phone" value="+38 (099) 123-45-67">
-          </div>
-          <button class="btn btn-dark" type="button">Зберегти зміни</button>
-        </div>
-      </div>
+
+            <div class="form-foot">
+                <label class="check-line">
+                    <input type="checkbox" name="remember">
+                    Запам'ятати мене
+                </label>
+
+                <a href="#">Забули пароль?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">
+                Увійти
+            </button>
+
+        </form>
+
+        <p class="auth-switch">
+            Ще немає акаунту?
+            <a href="{{ url_for('register') }}">Зареєструватися</a>
+        </p>
     </div>
-  </main>
+</main>
 
 
   <footer class="site-footer">

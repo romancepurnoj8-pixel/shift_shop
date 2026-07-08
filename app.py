@@ -1,13 +1,15 @@
+from flask import Flask, request, redirect, url_for, render_template, session
+from werkzeug.security import generate_password_hash, check_password_hash
+from PIL import Image
 import os
 import sqlite3
-from flask import Flask, request, redirect, url_for, render_template
-from PIL import Image
 
 app = Flask(__name__)
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DB_PATH = os.path.join(BASE_DIR, "database.db")
+app.secret_key = '12345'
 
 
 def init_db():
@@ -32,21 +34,22 @@ def init_db():
     conn.commit()
     conn.close()
 
-
 def init_Users():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
+            fname TEXT,
+            lname TEXT,
+            username TEXT NOT NULL UNIQUE,  -- UNIQUE не даст зарегистрировать один Email дважды
             pass TEXT
         )
     """)
     conn.commit()
     conn.close()
 
-
+init_Users()
 init_db()  # вызывается один раз при старте приложения
 
 
@@ -134,31 +137,76 @@ def product(product_id):
 
 
 # ---------- Авторизація / кабінет ----------
-
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        init_Users()
-        name = request.form["lname"]
-        lname = request.form["lname"]
-        email = request.form["reg-email"]
-        emailT = request.form["reg-password2"]
+        username = request.form.get("email")
+        password = request.form.get("password")
 
-        if email != emailT:
-            c = "Пароли не совпадают"
-    return render_template("vhod.html", c=c)
+        conn = sqlite3.connect(DB_PATH)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE username = ?", (username,))
+        user = cursor.fetchone()
+        conn.close()
+
+        # Проверяем, существует ли юзер и совпадает ли хэш пароля
+        if user and check_password_hash(user['pass'], password):
+            session['user_id'] = user['id']       # Записываем в сессию ID
+            session['username'] = user['username'] # Записываем имя
+            return redirect(url_for("index"))     # Отправляем на главную
+        else:
+            return "Неверное имя пользователя или пароль", 401
+
+    return render_template("login.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        return redirect(url_for("cabinet"))
+        # Получаем данные из инпутов по их атрибутам name
+        fname = request.form.get("fname")
+        lname = request.form.get("lname")
+        username = request.form.get("username")  # email используется как логин
+        password = request.form.get("pass")
+        password_confirm = request.form.get("pass2")
+
+        # Простая проверка совпадения паролей
+        if password != password_confirm:
+            return "Паролі не співпадають!", 400
+
+        # Хэшируем пароль для безопасности
+        hashed_password = generate_password_hash(password)
+
+        conn = sqlite3.connect(DB_PATH)
+        cursor = conn.cursor()
+        try:
+            # Если решишь сохранять имя и фамилию, добавь колонки fname и lname в таблицу users
+            cursor.execute(
+                "INSERT INTO users (username, pass) VALUES (?, ?)",
+                (username, hashed_password)
+            )
+            conn.commit()
+        except sqlite3.IntegrityError:
+            return "Користувач з таким Email вже існує", 400
+        finally:
+            conn.close()
+
+        return redirect(url_for("login"))
+
     return render_template("register.html")
 
 
 @app.route("/cabinet")
 def cabinet():
     return render_template("cabinet.html")
+
+
+
+@app.route("/logout")
+def logout():
+    session.clear()  # Полностью очищаем сессию пользователя
+    return redirect(url_for("index"))  # Отправляем на главную страницу
 
 
 # ---------- Кошик / оформлення замовлення ----------
