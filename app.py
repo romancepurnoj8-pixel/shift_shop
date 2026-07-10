@@ -46,12 +46,34 @@ def init_Users():
             pass TEXT
         )
     """)
+
+def init_Orders():
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor() # Было conn.connect()
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS orders (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            name TEXT,
+            adress TEXT,
+            status TEXT,
+            data TEXT,       -- Здесь нужна запятая
+            comment TEXT,
+            product_id TEXT
+        )
+    """)
     conn.commit()
     conn.close()
 
 init_Users()
 init_db()  # вызывается один раз при старте приложения
 
+@app.context_processor
+def inject_cart_count():
+    cart_session = session.get('cart', {})
+    # Считаем сумму всех quantity в корзине
+    total_items = sum(int(qty) for qty in cart_session.values())
+    return dict(cart_count=total_items)
 
 # ---------- Публічні сторінки ----------
 
@@ -213,21 +235,97 @@ def logout():
 
 @app.route("/cart")
 def cart():
-    return render_template("cart.html")
+    # Получаем корзину из сессии. Структура: { "id_товара": количество }
+    cart_session = session.get('cart', {})
+    cart_items = []
+    total_sum = 0
+
+    if cart_session:
+        conn = sqlite3.connect(DB_PATH)
+        conn.row_factory = sqlite3.Row
+        cursor = conn.cursor()
+
+        # Формируем плейсхолдеры для SQL-запроса, например: ?, ?, ?
+        placeholders = ', '.join(['?'] * len(cart_session))
+        # Извлекаем ключи (id товаров) из сессии
+        product_ids = list(cart_session.keys())
+
+        # Запрашиваем из базы только те товары, которые лежат в корзине
+        cursor.execute(f"SELECT * FROM products WHERE id IN ({placeholders})", product_ids)
+        products = cursor.fetchall()
+        conn.close()
+
+        # Соединяем информацию из БД с количеством из сессии
+        for product in products:
+            prod_id = str(product['id'])
+            quantity = int(cart_session[prod_id])
+            subtotal = product['price'] * quantity
+            total_sum += subtotal
+
+            cart_items.append({
+                'id': product['id'],
+                'name': product['name'],
+                'price': product['price'],
+                'image': product['image'],
+                'quantity': quantity,
+                'subtotal': subtotal
+            })
+
+    return render_template("cart.html", items=cart_items, total=total_sum)
 
 
 @app.route("/cart/add", methods=["POST"])
 def add_to_cart():
-    return redirect(url_for("cart"))
+    product_id = request.form.get("product_id")
+    # Считываем "qty", так как в HTML написано name="qty"
+    quantity = int(request.form.get("qty", 1)) 
+    next_url = request.form.get("next", url_for("cart"))
+
+    if not product_id:
+        return "Неправильний ID товару", 400
+
+    if 'cart' not in session:
+        session['cart'] = {}
+
+    cart_session = session['cart']
+
+    if product_id in cart_session:
+        cart_session[product_id] = int(cart_session[product_id]) + quantity
+    else:
+        cart_session[product_id] = quantity
+
+    session['cart'] = cart_session
+    session.modified = True
+
+    # Вместо жесткого редиректа в корзину, возвращаем пользователя туда, откуда он пришел
+    return redirect(next_url)
 
 
 @app.route("/cart/update", methods=["POST"])
 def update_cart():
+    product_id = request.form.get("product_id")
+    quantity = int(request.form.get("quantity", 1))
+
+    if 'cart' in session and product_id in session['cart']:
+        if quantity > 0:
+            session['cart'][product_id] = quantity
+        else:
+            # Если количество выставили в 0 или меньше, удаляем товар
+            session['cart'].pop(product_id, None)
+        
+        session.modified = True
+
     return redirect(url_for("cart"))
 
 
 @app.route("/cart/remove", methods=["POST"])
 def remove_from_cart():
+    product_id = request.form.get("product_id")
+
+    if 'cart' in session and product_id in session['cart']:
+        session['cart'].pop(product_id, None)
+        session.modified = True
+
     return redirect(url_for("cart"))
 
 

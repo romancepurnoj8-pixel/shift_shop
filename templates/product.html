@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ product['title'] }} — BinariLab</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ product['name'] }} — BinariLab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <header class="site-header">
   <div class="wrap">
-    
     <a href="{{ url_for('index') }}" class="logo">
       <img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab">
       <span class="logo-word">Binari<b>Lab</b></span>
@@ -26,22 +24,14 @@
     </nav>
     
     <div class="nav-actions">
-      
-      {# Проверяем: если пользователь вошел (имя есть в сессии) #}
       {% if session.get('username') %}
-        
         <a href="{{ url_for('cabinet') }}" class="btn btn-primary btn-sm" title="Особистий кабінет">
           ЛК: {{ session['username'] }}
         </a>
-        
         <a href="{{ url_for('logout') }}" style="margin-left: 10px; color: var(--muted); font-size: 14px;">Вихід</a>
-
-      {# Если пользователя в сессии нет (гость) #}
       {% else %}
-        
         <a href="{{ url_for('login') }}">Вхід</a>
         <a href="{{ url_for('register') }}" class="btn btn-dark btn-sm">Реєстрація</a>
-        
       {% endif %}
 
       <span class="divider"></span>
@@ -52,88 +42,79 @@
       
       <a href="{{ url_for('cart') }}" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
         <img src="{{ url_for('static', filename='img/icon-cart.png') }}" alt="">
-        <span class="cart-badge">4</span>
+        <span class="cart-badge">{{ cart_count if cart_count > 0 else 0 }}</span>
       </a>
+    </div> 
+  </div> 
+</header>
+
+<main class="wrap section">
+  <p class="crumbs">
+    <a href="{{ url_for('index') }}">Головна</a> /
+    <a href="{{ url_for('catalog') }}">Каталог</a> /
+    {{ product['name'] }}
+  </p>
+
+  <div class="product-layout">
+    <div>
+      <div class="product-gallery-main" id="gallery-main">
+        <img src="{{ url_for('static', filename='img/' + product['image']) }}" alt="{{ product['name'] }}" id="gallery-main-img">
+      </div>
+    </div>
+
+    <div class="product-info">
+      <span class="card-cat">Кросівки · {{ product['brand'] }}</span>
+      <h1 class="product-title">{{ product['name'] }}</h1>
       
-    </div> </div> </header>
-
-  <main class="wrap section">
-    <p class="crumbs">
-      <a href="{{ url_for('index') }}">Головна</a> /
-      <a href="{{ url_for('catalog') }}">Каталог</a> /
-      {{ product['title'] }}
-    </p>
-
-    <div class="product-layout">
-      <div>
-        <div class="product-gallery-main" id="gallery-main">
-          <img src="{{ url_for('static', filename='img/' + product['image']) }}" alt="{{ product['title'] }}" id="gallery-main-img">
-          
-          {% if product['discount'] %}
-            <span class="badge" style="left:14px;top:14px">-{{ product['discount'] }}%</span>
-          {% endif %}
-        </div>
+      <div class="product-rating">
+        <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <span>4.8 · 36 відгуків</span>
       </div>
 
-      <div class="product-info">
-        <span class="card-cat">Кросівки · {{ product['brand'] }}</span>
-        <h1 class="product-title">{{ product['title'] }}</h1>
-        
-        <div class="product-rating">
-          <span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-          <span>4.8 · 36 відгуків</span>
-        </div>
+      <div class="product-price-row">
+        <span class="price-now">{{ product['price'] }} грн</span>
+        {% if product['old_price'] %}
+          <span class="price-old">{{ product['old_price'] }} грн</span>
+        {% endif %}
+      </div>
 
-        <div class="product-price-row">
-          <span class="price-now">{{ product['price'] }} грн</span>
-          
-          {% if product['old_price'] %}
-            <span class="price-old">{{ product['old_price'] }} грн</span>
-            <span class="badge">-{{ product['discount'] }}%</span>
-          {% endif %}
-        </div>
+      <form action="{{ url_for('add_to_cart') }}" method="post">
+        <input type="hidden" name="product_id" value="{{ product['id'] }}">
+        <input type="hidden" name="next" value="/product/{{ product['id'] }}">
 
-        <form action="/cart/add" method="post">
-          <input type="hidden" name="product_id" value="{{ product['id'] }}">
-          <input type="hidden" name="next" value="/product/{{ product['id'] }}">
-
-          <div class="option-group">
-            <h4>Розмір</h4>
-            <div class="size-options">
-              {% for size in sizes_tuple %}
-
-                <label>
-                  <input type="radio" name="size" value="{{ size }}" {% if loop.first %}checked{% endif %}>
-                  <span>{{ size }}</span>
-                </label>
-              {% endfor %}
-            </div>
+        <div class="option-group">
+          <h4>Розмір</h4>
+          <div class="size-options">
+            {% for size in sizes_tuple %}
+              <label>
+                <input type="radio" name="size" value="{{ size }}" {% if loop.first %}checked{% endif %}>
+                <span>{{ size }}</span>
+              </label>
+            {% endfor %}
           </div>
-
-          <div class="qty-add-row">
-            <input type="number" name="qty" value="1" min="1" max="10" style="width:70px;padding:12px;border:1.5px solid var(--ink);border-radius:var(--radius-s);font-family:var(--font-data);font-weight:700">
-            <button type="submit" class="btn btn-primary" style="flex:1">Додати в кошик</button>
-          </div>
-        </form>
-
-        <div class="product-meta-list">
-          <div><span>Артикул</span><span>{{ product['sku'] or 'ADI-01' }}</span></div>
-          <div><span>Бренд</span><span>{{ product['brand'] }}</span></div>
-          <div><span>Доставка</span><span>Нова пошта, 1-2 дні</span></div>
-          <div><span>Повернення</span><span>14 днів</span></div>
         </div>
 
-        <p class="product-desc">{{ product['description'] }}</p>
-      </div>
-    </div>
-  </main>
+        <div class="qty-add-row">
+          <input type="number" name="qty" value="1" min="1" max="10" style="width:70px;padding:12px;border:1.5px solid #1B1B1F;border-radius:4px;font-weight:700">
+          <button type="submit" class="btn btn-primary" style="flex:1">Додати в кошик</button>
+        </div>
+      </form>
 
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="footer-bottom">
-        <span>&copy; 2026 BinariLab. Усі права захищені.</span>
+      <div class="product-meta-list">
+        <div><span>Бренд</span><span>{{ product['brand'] }}</span></div>
+        <div><span>Доставка</span><span>Нова пошта, 1-2 дні</span></div>
       </div>
+      <p class="product-desc">{{ product['description'] }}</p>
     </div>
-  </footer>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; 2026 BinariLab. Усі права захищені.</span>
+    </div>
+  </div>
+</footer>
 </body>
 </html>

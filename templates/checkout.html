@@ -3,9 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Оформлення замовлення — BinariLab</title>
+<title>Кошик — BinariLab</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
 </head>
 <body>
 <header class="site-header">
@@ -16,7 +15,7 @@
       <span class="logo-word">Binari<b>Lab</b></span>
     </a>
     
-    <button class="nav-toggle" aria-label="Меню">&#9776;</button>
+    <button class="nav-toggle" aria-label="Menu">&#9776;</button>
     
     <nav class="main-nav" aria-label="Основна навігація">
       <a href="{{ url_for('catalog') }}">Чоловікам</a>
@@ -26,22 +25,14 @@
     </nav>
     
     <div class="nav-actions">
-      
-      {# Проверяем: если пользователь вошел (имя есть в сессии) #}
       {% if session.get('username') %}
-        
         <a href="{{ url_for('cabinet') }}" class="btn btn-primary btn-sm" title="Особистий кабінет">
           ЛК: {{ session['username'] }}
         </a>
-        
         <a href="{{ url_for('logout') }}" style="margin-left: 10px; color: var(--muted); font-size: 14px;">Вихід</a>
-
-      {# Если пользователя в сессии нет (гость) #}
       {% else %}
-        
         <a href="{{ url_for('login') }}">Вхід</a>
         <a href="{{ url_for('register') }}" class="btn btn-dark btn-sm">Реєстрація</a>
-        
       {% endif %}
 
       <span class="divider"></span>
@@ -52,179 +43,130 @@
       
       <a href="{{ url_for('cart') }}" class="icon-btn cart-icon-btn" title="Кошик" aria-label="Кошик">
         <img src="{{ url_for('static', filename='img/icon-cart.png') }}" alt="">
-        <span class="cart-badge">4</span>
+        <span class="cart-badge">{{ cart_count if cart_count > 0 else 0 }}</span>
       </a>
       
-    </div> </div> </header>
-
+    </div> 
+  </div> 
+</header>
   
-    
-  
+<main class="wrap section">
+  <div class="section-head">
+    <h1 class="section-title">Кошик</h1>
+    <span class="result-count">{{ items|length }} позицій</span>
+  </div>
 
-  
-  <main class="wrap section">
-    <div class="section-head">
-      <h1 class="section-title">Оформлення замовлення</h1>
-    </div>
-
-    <form method="post" class="checkout-layout">
-      <div>
-        <div class="checkout-form">
-          <h3>Контактні дані</h3>
-          <div class="field-row">
-            <div class="field ">
-              <label for="name">Ім'я та прізвище</label>
-              <input type="text" id="name" name="name" value="" placeholder="Олена Коваль">
-              
-            </div>
-            <div class="field ">
-              <label for="phone">Телефон</label>
-              <input type="tel" id="phone" name="phone" value="" placeholder="+38 (099) 000-00-00">
-              
-            </div>
-          </div>
-          <div class="field ">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" value="" placeholder="you@example.com">
+  <div class="cart-layout">
+    <div>
+      
+      {% if not items %}
+        <div style="padding: 40px 0; text-align: center;">
+          <p>Ваш кошик порожній.</p>
+        </div>
+      {% else %}
+        
+        {# Цикл вывода товаров из корзины #}
+        {% for item in items %}
+        <div class="cart-item">
+          <img src="{{ url_for('static', filename='img/' + item.image) }}" alt="{{ item.name }}">
+          <div class="cart-item-info">
+            <h3>{{ item.name }}</h3>
+            <div class="cart-meta"><span>Розмір {{ item.size or 'Універсальний' }}</span><span>В наявності</span></div>
             
+            <form action="{{ url_for('update_cart') }}" method="post" style="display:inline-block">
+              <input type="hidden" name="product_id" value="{{ item.id }}">
+              <div class="qty-control" aria-label="Кількість">
+                <button type="submit" name="qty" value="{{ item.quantity - 1 }}" aria-label="Зменшити">&minus;</button>
+                <span>{{ item.quantity }}</span>
+                <button type="submit" name="qty" value="{{ item.quantity + 1 }}" aria-label="Збільшити">&plus;</button>
+              </div>
+            </form>
+            
+            <form action="{{ url_for('remove_from_cart') }}" method="post" style="display:inline-block">
+              <input type="hidden" name="product_id" value="{{ item.id }}">
+              <button type="submit" class="remove-link" style="border:none;background:none;padding:0;cursor:pointer;">Видалити</button>
+            </form>
+          </div>
+          <div class="cart-item-price">
+            <span class="price-now">{{ item.subtotal }} грн</span>
           </div>
         </div>
+        {% endfor %}
 
-        <div class="checkout-form">
-          <h3>Доставка</h3>
-          <div class="field-row">
-            <div class="field ">
-              <label for="city">Місто</label>
-              <input type="text" id="city" name="city" value="" placeholder="Київ">
-              
-            </div>
-            <div class="field ">
-              <label for="address">Адреса / відділення</label>
-              <input type="text" id="address" name="address" value="" placeholder="вул. Хрещатик, 22">
-              
-            </div>
-          </div>
+      {% endif %}
+      
+    </div>
 
-          <fieldset>
-            <label class="radio-card">
-              <input type="radio" name="delivery" value="Нова пошта, у відділення" checked>
-              <span><strong>Нова пошта — у відділення</strong><span class="hint">1-2 дні · 90 грн</span></span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="delivery" value="Нова пошта, кур'єром">
-              <span><strong>Нова пошта — кур'єром</strong><span class="hint">1-2 дні · 150 грн</span></span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="delivery" value="Самовивіз з магазину">
-              <span><strong>Самовивіз</strong><span class="hint">вул. Січових Стрільців, 10, Київ · безкоштовно</span></span>
-            </label>
-          </fieldset>
-        </div>
+    <aside class="summary">
+      <h3>Разом</h3>
+      <div class="summary-row"><span>Товари ({{ cart_count }})</span><span>{{ total }} грн</span></div>
+      <div class="summary-row"><span>Доставка</span><span>{{ '150' if items else '0' }} грн</span></div>
+      
+      <div class="promo-field">
+        <input type="text" placeholder="Промокод">
+        <button class="btn btn-ghost btn-sm" type="button">OK</button>
+      </div>
+      
+      <div class="summary-row total">
+        <span>До сплати</span>
+        <span>{{ total + 150 if items else 0 }} грн</span>
+      </div>
+      
+      {% if items %}
+        <a href="{{ url_for('checkout') }}" class="btn btn-primary btn-block" style="margin-top:16px">Оформити замовлення</a>
+      {% else %}
+        <button class="btn btn-primary btn-block" style="margin-top:16px" disabled>Кошик порожній</button>
+      {% endif %}
+      <a href="{{ url_for('catalog') }}" class="section-link" style="display:block;text-align:center;margin-top:16px">&larr; Продовжити покупки</a>
+    </aside>
+  </div>
+  
+</main>
 
-        <div class="checkout-form">
-          <h3>Оплата</h3>
-          <fieldset>
-            <label class="radio-card">
-              <input type="radio" name="payment" value="Оплата карткою онлайн" checked>
-              <span><strong>Карткою онлайн</strong><span class="hint">Visa / Mastercard</span></span>
-            </label>
-            <label class="radio-card">
-              <input type="radio" name="payment" value="Оплата при отриманні">
-              <span><strong>При отриманні</strong><span class="hint">готівкою або карткою кур'єру</span></span>
-            </label>
-          </fieldset>
-          <div class="field">
-            <label for="comment">Коментар до замовлення (необов'язково)</label>
-            <input type="text" id="comment" name="comment" value="" placeholder="Наприклад: передзвонити перед доставкою">
-          </div>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="bin-rule" aria-hidden="true">
+      <span>01001010</span><span>BINARILAB</span><span>01101100</span><span>KYIV.UA</span><span>01110011</span><span>SNEAKER LAB</span><span>00110110</span>
+    </div>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab"></a>
+        <p>Магазин кросівок та стріт-аксесуарів. Оригінальні пари, чесні ціни, доставка по всій Україні.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="TikTok">TT</a>
+          <a href="#" aria-label="YouTube">YT</a>
+          <a href="#" aria-label="Telegram">TG</a>
         </div>
       </div>
-
-      <aside class="checkout-summary">
-        <h3>Ваше замовлення</h3>
-        
-        <div class="mini-line">
-          <img src="{{ url_for('static', filename='img/product-sneaker-2.png') }}" alt="">
-          <div>
-            <div class="name">Adidas LA Trainer OG &#34;Off White&#34;</div>
-            <div class="meta">Розмір 41 · 1 шт.</div>
-          </div>
-          <div style="font-family:var(--font-data);font-weight:700">4 445 грн</div>
-        </div>
-        
-        <div class="mini-line">
-          <img src="{{ url_for('static', filename='img/product-vans.png') }}" alt="">
-          <div>
-            <div class="name">Vans Old Skool Classic</div>
-            <div class="meta">Розмір 42 · 1 шт.</div>
-          </div>
-          <div style="font-family:var(--font-data);font-weight:700">2 090 грн</div>
-        </div>
-        
-        <div class="mini-line">
-          <img src="{{ url_for('static', filename='img/product-sneaker-3.png') }}" alt="">
-          <div>
-            <div class="name">Crocs Spongebob Squarepants Clog</div>
-            <div class="meta">Розмір 39 · 2 шт.</div>
-          </div>
-          <div style="font-family:var(--font-data);font-weight:700">6 384 грн</div>
-        </div>
-        
-        <div class="summary-row" style="margin-top:14px"><span>Товари</span><span>12 919 грн</span></div>
-        <div class="summary-row"><span>Доставка</span><span>150 грн</span></div>
-        <div class="summary-row total"><span>До сплати</span><span>13 069 грн</span></div>
-        <button type="button" class="btn btn-primary btn-block" style="margin-top:16px">Підтвердити замовлення</button>
-        <a href="{{ url_for('cart') }}" class="section-link" style="display:block;text-align:center;margin-top:16px">&larr; Повернутися в кошик</a>
-      </aside>
-    </form>
-  </main>
-
-
-  <footer class="site-footer">
-    <div class="wrap">
-      <div class="bin-rule" aria-hidden="true">
-        <span>01001010</span><span>BINARILAB</span><span>01101100</span><span>KYIV.UA</span><span>01110011</span><span>SNEAKER LAB</span><span>00110110</span>
+      <div class="footer-col">
+        <h4>Каталог</h4>
+        <a href="{{ url_for('catalog') }}">Чоловікам</a>
+        <a href="{{ url_for('catalog') }}">Жінкам</a>
+        <a href="{{ url_for('catalog') }}">Аксесуари</a>
+        <a href="{{ url_for('catalog') }}">Розпродаж</a>
       </div>
-      <div class="footer-top">
-        <div class="footer-brand">
-          <a href="{{ url_for('index') }}" class="logo"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="BinariLab"></a>
-          <p>Магазин кросівок та стріт-аксесуарів. Оригінальні пари, чесні ціни, доставка по всій Україні.</p>
-          <div class="social-row">
-            <a href="#" aria-label="Instagram">IG</a>
-            <a href="#" aria-label="TikTok">TT</a>
-            <a href="#" aria-label="YouTube">YT</a>
-            <a href="#" aria-label="Telegram">TG</a>
-          </div>
-        </div>
-        <div class="footer-col">
-          <h4>Каталог</h4>
-          <a href="{{ url_for('catalog') }}">Чоловікам</a>
-          <a href="{{ url_for('catalog') }}">Жінкам</a>
-          <a href="{{ url_for('catalog') }}">Аксесуари</a>
-          <a href="{{ url_for('catalog') }}">Розпродаж</a>
-        </div>
-        <div class="footer-col">
-          <h4>Компанія</h4>
-          <a href="{{ url_for('about') }}">Про нас</a>
-          <a href="{{ url_for('cabinet') }}">Особистий кабінет</a>
-          <a href="{{ url_for('cart') }}">Кошик</a>
-          <a href="{{ url_for('admin_dashboard') }}">Адмін-панель</a>
-        </div>
-        <div class="footer-col">
-          <h4>Клієнтам</h4>
-          <a href="{{ url_for('login') }}">Вхід</a>
-          <a href="{{ url_for('register') }}">Реєстрація</a>
-          <a href="#">Доставка й оплата</a>
-          <a href="#">Повернення</a>
-        </div>
+      <div class="footer-col">
+        <h4>Компанія</h4>
+        <a href="{{ url_for('about') }}">Про нас</a>
+        <a href="{{ url_for('cabinet') }}">Особистий кабінет</a>
+        <a href="{{ url_for('cart') }}">Кошик</a>
+        <a href="{{ url_for('admin_dashboard') }}">Адмін-панель</a>
       </div>
-      <div class="footer-bottom">
-        <span>&copy; 2026 BinariLab. Усі права захищені.</span>
-        <span>Київ · пн-нд 10:00-20:00 · +38 (099) 000-00-00</span>
+      <div class="footer-col">
+        <h4>Клієнтам</h4>
+        <a href="{{ url_for('login') }}">Вхід</a>
+        <a href="{{ url_for('register') }}">Реєстрація</a>
+        <a href="#">Доставка й оплата</a>
+        <a href="#">Повернення</a>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <span>&copy; 2026 BinariLab. Усі права захищені.</span>
+      <span>Київ · пн-нд 10:00-20:00 · +38 (099) 000-00-00</span>
+    </div>
+  </div>
+</footer>
 <script src="{{ url_for('static', filename='js/site.js') }}"></script>
-
 </body>
 </html>
